@@ -1,37 +1,32 @@
+import os
 import streamlit as st
 from pymongo import MongoClient
+from urllib.parse import urlparse
 from dotenv import load_dotenv
-import os
-import re
 
+# ✅ Load environment variables
 load_dotenv()
-client = MongoClient(os.getenv("MONGODB_URI"))
-coll = client["docstream"]["cases"]
 
-st.set_page_config(page_title="DocStream 대시보드", layout="wide")
-st.title("📚 저장된 사례 분석")
+# ✅ MongoDB 연결
+uri = os.getenv("MONGODB_URI")
+client = MongoClient(uri)
 
-query = st.text_input("🔍 키워드 검색")
-if query:
-    results = coll.find({
-        "$or": [
-            {"source": {"$regex": query, "$options": "i"}},
-            {"content": {"$regex": query, "$options": "i"}},
-            {"tags": {"$regex": query, "$options": "i"}}
-        ]
-    })
+# ✅ URI에서 DB 이름 자동 추출
+parsed = urlparse(uri)
+db_name = parsed.path[1:] or "test"
+db = client[db_name]
+
+# ✅ Streamlit 설정
+st.set_page_config(page_title="📊 MongoDB Log Viewer", layout="wide")
+st.title("📊 Uploaded Data Log")
+
+# ✅ logs 컬렉션에서 데이터 불러오기
+collection = db.get_collection("logs")
+docs = list(collection.find().sort("_id", -1))
+
+if docs:
+    st.subheader("총 데이터 수: {}".format(len(docs)))
+    for doc in docs:
+        st.json(doc)
 else:
-    results = coll.find()
-
-def summarize(text, max_sentences=3):
-    sentences = re.split(r'[.!?\n]', text)
-    sentences = [s.strip() for s in sentences if len(s.strip()) > 30]
-    return " ".join(sentences[:max_sentences])
-
-for doc in results:
-    st.markdown(f"### 📄 {doc.get('source', '무제')}")
-    st.markdown("**🏷 태그**: " + ", ".join(doc.get("tags", [])))
-    st.markdown("**📝 요약**: " + summarize(doc.get("content", "")))
-    with st.expander("📚 전체 보기"):
-        st.markdown(doc.get("content", ""))
-    st.markdown("---")
+    st.info("아직 업로드된 데이터가 없습니다.")
