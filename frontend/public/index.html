@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>DocStream Cute Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff5ec;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: linear-gradient(90deg, #ffa69e, #ffd3b6);
+      color: #5d4037;
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 4px dashed #f9a825;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 850px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 1rem 1rem 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border: 2px solid #fce4ec;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      border-color: #f8bbd0;
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 0.8em;
+      border-radius: 12px;
+    }
+
+    .card span {
+      display: block;
+      font-weight: 600;
+      font-size: 1.1em;
+      color: #6d4c41;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      padding: 1rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DocStream Dashboard</h1>
+  </header>
+
+  <div class="dashboard">
+    <div class="card" onclick="location.href='note_editor.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/4727/4727494.png" alt="note" />
+      <span>NOTE</span>
+    </div>
+
+    <div class="card" onclick="location.href='index_linked_notes.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/859/859202.png" alt="memo" />
+      <span>MEMO LINK</span>
+    </div>
+
+    <div class="card" onclick="location.href='pdf_upload.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="pdf" />
+      <span>PDF</span>
+    </div>
+
+    <div class="card" onclick="location.href='index_entry_edit_ui.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="case" />
+      <span>CASE</span>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 DocStream. All rights reserved.
+  </footer>
+</body>
+</html>

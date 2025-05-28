@@ -1,0 +1,98 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 20px;
+}
+
+header {
+  background-color: #005792;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+nav button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+nav button:hover {
+  background-color: #ddd;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="text"], input[type="file"], textarea {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #005792;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #003f6b;
+}
+
+ul#resultList {
+  list-style: none;
+  margin-top: 20px;
+}
+
+ul#resultList li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+#pagination {
+  margin-top: 20px;
+}
+
+#pagination button {
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #eee;
+  color: #333;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+#pagination button.active {
+  background-color: #005792;
+  color: white;
+}
